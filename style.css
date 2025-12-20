@@ -1,0 +1,751 @@
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f6fb;
+  color: #222;
+}
+
+/* HEADER */
+.financial-analyst-header {
+  background: linear-gradient(135deg, #1e90ff, #0aa2ff);
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.financial-analyst-user-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BALANCE */
+.financial-analyst-balance-card {
+  background: #fff;
+  margin: -30px 20px 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.financial-analyst-summary {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Container utama */
+.financial-analyst-income,
+.financial-analyst-expense {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 6px;
+}
+
+/* Icon */
+.financial-analyst-income i,
+.financial-analyst-expense i {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 14px;
+}
+
+/* Teks label */
+.financial-analyst-income p,
+.financial-analyst-expense p {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Nominal di bawah */
+.financial-analyst-income strong,
+.financial-analyst-expense strong {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Warna */
+.financial-analyst-income {
+  color: #2ecc71;
+}
+
+.financial-analyst-expense {
+  color: #e74c3c;
+}
+/* HISTORY */
+.financial-analyst-history {
+  padding: 0 20px 120px;
+}
+
+.financial-analyst-history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.financial-analyst-history li {
+  background: #fff;
+  padding: 14px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+/* BUTTON */
+.financial-analyst-add-btn {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: #1e90ff;
+  color: white;
+  font-size: 24px;
+}
+
+/* MODAL */
+.financial-analyst-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
+.financial-analyst-modal-content {
+  margin: 60px 20px;
+}
+
+.financial-analyst-card {
+  background: #fff;
+  padding: 22px;
+  border-radius: 20px;
+}
+
+.financial-analyst-card input,
+.financial-analyst-card select {
+  width: 100%;
+  padding: 14px 16px;
+  margin-top: 14px;
+
+  border-radius: 14px;
+  border: 1.5px solid #e5e7eb;
+  background: #fafafa;
+
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.financial-analyst-card input:focus,
+.financial-analyst-card select:focus {
+  border-color: #1e90ff;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(30, 144, 255, 0.12);
+}
+
+.financial-analyst-card select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23999' d='M5.5 7l4.5 4.5L14.5 7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+}
+
+.financial-analyst-card input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.financial-analyst-modal-content h3 {
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+.financial-analyst-card {
+  padding: 26px;
+}
+
+.financial-analyst-secondary {
+  background: #e0e0e0;
+}
+
+.financial-analyst-profile {
+  text-align: center;
+}
+
+/* BUTTON MODERN */
+.financial-analyst-card button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 16px;
+
+  border: none;
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  background: linear-gradient(135deg, #1e90ff, #0aa2ff);
+  color: #fff;
+
+  box-shadow: 0 10px 25px rgba(30, 144, 255, 0.35);
+}
+
+.financial-analyst-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(30, 144, 255, 0.45);
+}
+
+.financial-analyst-card button:active {
+  transform: scale(0.97);
+  box-shadow: 0 6px 16px rgba(30, 144, 255, 0.35);
+}
+
+.financial-analyst-btn-primary {
+  background: linear-gradient(135deg, #1e90ff, #0aa2ff);
+  color: white;
+  box-shadow: 0 10px 25px rgba(30, 144, 255, 0.35);
+}
+
+.financial-analyst-secondary {
+  background: #f3f4f6 !important;
+  color: #374151 !important;
+  box-shadow: none !important;
+}
+
+.financial-analyst-secondary:hover {
+  background: #e5e7eb !important;
+}
+
+/* ================= BUTTON DANGER (HAPUS) ================= */
+.financial-analyst-btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: #fff !important;
+
+  border-radius: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+  transition: all 0.25s ease;
+}
+
+.financial-analyst-btn-danger:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(239, 68, 68, 0.45);
+}
+
+.financial-analyst-btn-danger:active {
+  transform: scale(0.97);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+}
+
+/* CONFIRM MODAL */
+.financial-analyst-confirm {
+  text-align: center;
+}
+
+.financial-analyst-confirm i {
+  font-size: 40px;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+
+.financial-analyst-confirm-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* SWIPE ANIMATION */
+.financial-analyst-history li {
+  position: relative;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.financial-analyst-swipe-edit {
+  background: rgba(46, 204, 113, 0.1);
+}
+
+.financial-analyst-swipe-delete {
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* PAGINATION */
+.financial-analyst-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 100px;
+}
+
+.financial-analyst-pagination button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: #e0e0e0;
+}
+
+.financial-analyst-pagination button.active {
+  background: #1e90ff;
+  color: white;
+}
+
+/* SEARCH */
+.financial-analyst-search {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+}
+
+.financial-analyst-search input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.financial-analyst-search button {
+  width: 46px;
+  border-radius: 14px;
+  border: none;
+  background: #e74c3c;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* HIGHLIGHT SEARCH RESULT */
+.financial-analyst-highlight {
+  background: yellow;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+
+/* EYE TOGGLE */
+.financial-analyst-visibility-toggle {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.financial-analyst-visibility-toggle i {
+  font-size: 20px;
+  color: #888;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.financial-analyst-visibility-toggle i.eye-open {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+.financial-analyst-visibility-toggle i.eye-closed {
+  transform: rotate(-20deg) scale(0.85);
+  opacity: 0.6;
+}
+
+/* BLUR NOMINAL */
+.financial-analyst-blur {
+  filter: blur(6px);
+  transition: filter 0.35s ease;
+}
+
+/* ================= PWA INSTALL MODAL ================= */
+.pwa-install {
+  text-align: center;
+}
+
+.pwa-install i {
+  font-size: 48px;
+  color: #1e90ff;
+  margin-bottom: 12px;
+}
+
+.pwa-install p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.pwa-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.pwa-actions button {
+  flex: 1;
+}
+
+/* PINNED STAR */
+.financial-analyst-pin {
+  font-size: 18px;
+  color: #f1c40f;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.financial-analyst-pin:hover {
+  transform: scale(1.2);
+  opacity: 0.85;
+}
+
+.financial-analyst-header-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.financial-analyst-archive-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.financial-analyst-archive-icon i {
+  color: white;
+  font-size: 18px;
+}
+
+#financial-analyst-archive-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+#financial-analyst-archive-list li {
+  background: #f4f6fb;
+  padding: 14px;
+  border-radius: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.financial-analyst-restore-icon {
+  font-size: 18px;
+  color: #1e90ff;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.financial-analyst-restore-icon:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+/* ================= TOAST SINGLE LINE SAFE ================= */
+.financial-analyst-toast {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+
+  max-width: calc(100vw - 32px);
+  min-width: 120px;
+
+  padding: 12px 16px;
+  border-radius: 14px;
+
+  background: rgba(46, 204, 113, 0.95);
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+
+  text-align: center;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 9999;
+}
+
+.financial-analyst-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ================= ARCHIVE LIST CLEAN LAYOUT ================= */
+#financial-analyst-archive-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 14px 16px;
+}
+
+/* INFO (TEKS KIRI) */
+#financial-analyst-archive-list .archive-info {
+  flex: 1;
+  min-width: 0;
+}
+
+#financial-analyst-archive-list .archive-info strong,
+#financial-analyst-archive-list .archive-info small {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ACTION (KANAN – FIXED, TIDAK WRAP) */
+#financial-analyst-archive-list .archive-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 8px;
+  min-width: 72px;
+  flex-shrink: 0;
+
+  white-space: nowrap;
+}
+
+/* COUNTDOWN */
+.archive-countdown {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ef4444;
+  min-width: 14px;
+  text-align: center;
+}
+
+/* CANCEL */
+.archive-cancel {
+  font-size: 16px;
+  color: #ef4444;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.archive-cancel:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+/* RESTORE ICON */
+.financial-analyst-restore-icon {
+  font-size: 18px;
+  color: #1e90ff;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.financial-analyst-restore-icon:hover {
+  transform: scale(1.15);
+  opacity: 0.8;
+}
+
+.financial-analyst-savings {
+  background: #ffffff;
+  margin: 16px;
+  padding: 18px;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+.savings-header h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.savings-sub {
+  font-size: 12px;
+  color: #777;
+}
+
+.savings-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 0;
+}
+
+.savings-progress {
+  height: 12px;
+  background: #eef1f5;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+#savings-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(135deg, #1e90ff, #0aa2ff);
+  border-radius: 30px;
+}
+
+.savings-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.savings-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #1e90ff;
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #f1f3f6;
+  color: #333;
+}
+
+.btn-danger {
+  background: #ffecec;
+  color: #d63031;
+}
+
+.savings-modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.savings-modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: none;
+}
+
+#savings-target-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  margin-top: 12px;
+}
+
+/* === YELLOW COLOR FOR SAVINGS NOMINAL ONLY === */
+
+#savings-current,
+#savings-target {
+  color: #f4c430; /* Kuning emas */
+  font-weight: 700;
+}
+
+/* ================= SAVINGS ACTION SINGLE SLOT ================= */
+
+.savings-actions {
+  position: relative;
+  height: 44px; /* KUNCI TINGGI SLOT */
+}
+
+/* BASE */
+.savings-actions .action-btn,
+.savings-actions .action-group {
+  position: absolute;
+  inset: 0; /* isi slot yang sama */
+  display: flex;
+  gap: 10px;
+
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* TAMBAH FULL */
+.savings-actions .action-btn {
+  width: 100%;
+}
+
+/* EDIT + HAPUS 50% */
+.savings-actions .action-group button {
+  flex: 1;
+}
+
+/* HIDDEN */
+.savings-actions .is-hidden {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+/* VISIBLE */
+.savings-actions .is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* ================= BUTTON TEXT PERFECT CENTER ================= */
+
+/* Semua tombol di savings-actions */
+.savings-actions button {
+  display: flex;
+  align-items: center; /* vertical center */
+  justify-content: center; /* horizontal center */
+
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+
+  padding: 0 16px; /* horizontal saja */
+}
+
+/* ================= ARCHIVE EMPTY STATE ================= */
+
+.archive-empty {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  margin: 20px 0 10px;
+  opacity: 0.85;
+}

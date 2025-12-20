@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analisis Keuangan</title>
+
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="linear-gradient(135deg, #1e90ff, #0aa2ff)">
+</head>
+
+<body>
+
+  <header class="financial-analyst-header">
+    <div>
+      <small>Analisis Keuangan</small>
+      <h2>Selamat Datang</h2>
+    </div>
+
+    <div class="financial-analyst-header-actions">
+      <div class="financial-analyst-archive-icon" onclick="financialAnalystOpenArchive()">
+        <i class="fa-solid fa-box-archive"></i>
+      </div>
+
+      <div class="financial-analyst-user-icon" onclick="financialAnalystOpenProfile()">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </div>
+  </header>
+
+  <section class="financial-analyst-balance-card">
+    <div class="financial-analyst-visibility-toggle" onclick="financialAnalystToggleVisibility()">
+      <i id="financial-analyst-eye" class="fa-solid fa-eye-slash"></i>
+    </div>
+    <span>Total Saldo</span>
+    <h1 id="financial-analyst-total-saldo">Rp0</h1>
+
+    <div class="financial-analyst-summary">
+      <div class="financial-analyst-income">
+        <i class="fa-solid fa-arrow-down"></i>
+        <p>Pemasukan</p>
+        <strong id="financial-analyst-total-masuk">Rp0</strong>
+      </div>
+      <div class="financial-analyst-expense">
+        <i class="fa-solid fa-arrow-up"></i>
+        <p>Pengeluaran</p>
+        <strong id="financial-analyst-total-keluar">Rp0</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="financial-analyst-savings">
+    <div class="savings-header">
+      <h3>Target Tabungan</h3>
+      <span class="savings-sub">Akumulasi sisa bulanan</span>
+    </div>
+
+    <div class="savings-info">
+      <div>
+        <small>Saldo Tabungan</small>
+        <strong id="savings-current">Rp0</strong>
+      </div>
+      <div>
+        <small>Target</small>
+        <strong id="savings-target">Rp0</strong>
+      </div>
+    </div>
+
+    <div class="savings-progress">
+      <div id="savings-progress-bar"></div>
+    </div>
+
+    <div class="savings-actions">
+      <!-- TAMBAH -->
+      <button id="btn-savings-add" class="btn-primary action-btn is-hidden" onclick="financialAnalystAddTarget()">
+        Tambah
+      </button>
+
+      <!-- GROUP EDIT + HAPUS -->
+      <div id="savings-edit-group" class="action-group is-hidden">
+        <button class="btn-secondary" onclick="financialAnalystEditTarget()">Edit</button>
+        <button class="btn-danger" onclick="financialAnalystDeleteTarget()">Hapus</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="financial-analyst-history">
+    <h3>Riwayat Transaksi <small>(geser)</small></h3>
+    <div class="financial-analyst-search">
+      <input type="text" id="financial-analyst-search" placeholder="Cari deskripsi, tipe, tanggal..."
+        oninput="financialAnalystSearch(this.value)" />
+      <button onclick="financialAnalystResetSearch()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <ul id="financial-analyst-transaction-list"></ul>
+  </section>
+
+  <button class="financial-analyst-add-btn" onclick="financialAnalystOpenForm()">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+
+  <!-- MODAL FORM -->
+  <div class="financial-analyst-modal" id="financial-analyst-modal-form">
+    <div class="financial-analyst-modal-content financial-analyst-card">
+      <h3 id="financial-analyst-form-title">Tambah Data</h3>
+
+      <select id="financial-analyst-jenis">
+        <option value="">Jenis</option>
+        <option value="pemasukan">Pemasukan</option>
+        <option value="pengeluaran">Pengeluaran</option>
+      </select>
+
+      <input id="financial-analyst-deskripsi" placeholder="Deskripsi">
+      <input id="financial-analyst-jumlah" type="number" placeholder="Jumlah">
+
+      <select id="financial-analyst-tipe">
+        <option value="">Tipe</option>
+        <option>Harian</option>
+        <option>Bulanan</option>
+        <option>Lainnya</option>
+      </select>
+
+      <input id="financial-analyst-tanggal" type="date">
+
+      <button onclick="financialAnalystSave()">Simpan</button>
+      <button class="financial-analyst-secondary" onclick="financialAnalystCloseForm()">Batal</button>
+    </div>
+  </div>
+
+  <!-- MODAL PROFILE -->
+  <div class="financial-analyst-modal" id="financial-analyst-modal-profile">
+    <div class="financial-analyst-modal-content financial-analyst-card financial-analyst-profile">
+      <i class="fa-solid fa-user"></i>
+      <h3>Aplikasi Analis Keuangan</h3>
+      <p>Dikembangkan oleh</p>
+      <strong>IG:@zeapplefjx_dika</strong>
+      <small> • Offline App</small>
+      <button onclick="financialAnalystCloseProfile()">Tutup</button>
+    </div>
+  </div>
+
+  <!-- MODAL KONFIRMASI HAPUS -->
+  <div class="financial-analyst-modal" id="financial-analyst-modal-confirm">
+    <div class="financial-analyst-modal-content financial-analyst-card financial-analyst-confirm">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h3>Hapus Transaksi?</h3>
+      <p>Data yang dihapus tidak dapat dikembalikan.</p>
+
+      <div class="financial-analyst-confirm-actions">
+        <button class="financial-analyst-btn-danger" id="financial-analyst-confirm-delete">
+          Hapus
+        </button>
+        <button class="financial-analyst-btn-secondary" onclick="financialAnalystCloseConfirm()">
+          Batal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DETAIL TRANSAKSI -->
+  <div class="financial-analyst-modal" id="financial-analyst-modal-detail">
+    <div class="financial-analyst-modal-content financial-analyst-card">
+      <h3>Detail Transaksi</h3>
+
+      <p><strong>Jenis:</strong> <span id="detail-jenis"></span></p>
+      <p><strong>Tanggal:</strong> <span id="detail-tanggal"></span></p>
+      <p><strong>Tipe:</strong> <span id="detail-tipe"></span></p>
+      <p><strong>Jumlah:</strong> <span id="detail-jumlah"></span></p>
+      <p><strong>Deskripsi:</strong></p>
+      <p id="detail-deskripsi"></p>
+
+      <button onclick="financialAnalystCloseDetail()">Tutup</button>
+    </div>
+  </div>
+
+  <!-- PAGINATION -->
+  <div class="financial-analyst-pagination" id="financial-analyst-pagination"></div>
+
+  <!-- MODAL INSTALL PWA -->
+  <div class="financial-analyst-modal" id="pwa-install-modal">
+    <div class="financial-analyst-modal-content financial-analyst-card pwa-install">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <h3>Install Aplikasi</h3>
+      <p>Pasang aplikasi ini agar bisa digunakan seperti aplikasi native dan offline.</p>
+
+      <div class="pwa-actions">
+        <button class="financial-analyst-btn-primary" id="pwa-install-btn">
+          Install
+        </button>
+        <button class="financial-analyst-btn-secondary" id="pwa-install-close">
+          Nanti
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="financial-analyst-modal" id="financial-analyst-modal-archive">
+    <div class="financial-analyst-modal-content financial-analyst-card">
+      <h3>Arsip Transaksi</h3>
+      <!-- EMPTY STATE -->
+      <p id="archive-empty-text" class="archive-empty">
+        Belum ada transaksi yang diarsipkan
+      </p>
+      <ul id="financial-analyst-archive-list"></ul>
+      <button onclick="financialAnalystCloseArchive()">Tutup</button>
+    </div>
+  </div>
+
+  <div class="financial-analyst-modal" id="savings-target-modal">
+    <div class="financial-analyst-modal-content financial-analyst-card">
+      <h3 id="savings-modal-title">Target Tabungan</h3>
+
+      <input type="number" id="savings-target-input" placeholder="Masukkan target tabungan (Rp)" />
+
+      <div class="savings-modal-actions">
+        <button class="btn-primary" onclick="financialAnalystSaveTarget()">Simpan</button>
+        <button class="btn-secondary" onclick="financialAnalystCloseTargetModal()">Batal</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="financial-analyst-modal" id="savings-delete-modal">
+    <div class="financial-analyst-modal-content financial-analyst-card financial-analyst-confirm">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <h3>Hapus Target Tabungan?</h3>
+      <p>Target tabungan akan dihapus dan progres direset.</p>
+
+      <div class="financial-analyst-confirm-actions">
+        <button class="financial-analyst-btn-danger" onclick="financialAnalystConfirmDeleteTarget()">
+          Hapus
+        </button>
+        <button class="financial-analyst-btn-secondary" onclick="financialAnalystCloseDeleteTarget()">
+          Batal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="financial-analyst-toast" class="financial-analyst-toast"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

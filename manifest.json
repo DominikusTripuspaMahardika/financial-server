@@ -1,0 +1,21 @@
+{
+  "name": "Analisis Keuangan",
+  "short_name": "Keuangan",
+  "description": "Aplikasi Analisis Keuangan Offline",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "linear-gradient(135deg, #1e90ff, #0aa2ff)",
+  "theme_color": "linear-gradient(135deg, #1e90ff, #0aa2ff)",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
